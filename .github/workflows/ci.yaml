@@ -34,4 +34,8 @@ jobs:
       - name: ${{ matrix.task.name }}
         run: ${{ matrix.task.command }}
       - name: Merge Coverage
-        run: coverage combine
+        run: coverage combine .coverage_api
+      - name: Submit Coverage
+        run: ([ -z "$COVERALLS_REPO_TOKEN" ] && echo "coveralls is skipped in forked repo tests" || coveralls)
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
