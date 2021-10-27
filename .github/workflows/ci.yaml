@@ -20,7 +20,9 @@ jobs:
           - name: Ottr API Unit Test
             command: |
               tox -e coverage-api
-
+          - name: Ottr ACME Package Unit Test
+            command: |
+              tox -e coverage-acme
     name: "Python ${{ matrix.python }}/${{ matrix.task.name }}"
     steps:
       - uses: "actions/checkout@v2"
@@ -34,7 +36,7 @@ jobs:
       - name: ${{ matrix.task.name }}
         run: ${{ matrix.task.command }}
       - name: Merge Coverage
-        run: coverage combine .coverage_api
+        run: coverage combine .coverage_api .coverage_acme
       - name: Submit Coverage
         run: ([ -z "$COVERALLS_REPO_TOKEN" ] && echo "coveralls is skipped in forked repo tests" || coveralls)
         env:
