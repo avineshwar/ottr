@@ -81,7 +81,10 @@ def update_certificate_expiration(hostname: str, certificate_expiration: str) ->
             },
             ReturnValues="UPDATED_NEW"
         )
+        print(response)
         LOGGER.info(response)
+        print('-----------')
+        print(_query_primary_key(hostname))
     except Exception as error:
         LOGGER.error(error)
         sys.exit(1)
