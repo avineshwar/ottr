@@ -17,11 +17,9 @@ jobs:
         python:
           - 3.9
         task:
-          - name: Ottr API Unit Test
+          - name: Ottr Unit Test
             command: |
               tox -e coverage-api
-          - name: Ottr ACME Package Unit Test
-            command: |
               tox -e coverage-acme
     name: "Python ${{ matrix.python }}/${{ matrix.task.name }}"
     steps:
