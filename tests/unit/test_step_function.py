@@ -180,7 +180,6 @@ def test_state_machine_start_execution(monkeypatch):
     }
     string_payload = json.dumps(payload)
     execution = start_execution(string_payload)
-    print(execution)
     assert execution["ResponseMetadata"]["HTTPStatusCode"] == 200
 
 
